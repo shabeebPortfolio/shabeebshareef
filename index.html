@@ -69,6 +69,17 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 #videoGrid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 .vcard{margin:0;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .25s,border-color .25s}.vcard:hover{transform:translateY(-5px);border-color:var(--a2)}
 .vcard video{display:block;width:100%;aspect-ratio:9/16;background:#000;object-fit:contain}.vcard figcaption{padding:.8rem 1rem;font-weight:600;font-size:.95rem}
+.vposter{position:relative;display:block;width:100%;aspect-ratio:9/16;border:0;padding:0;cursor:pointer;background:#000;overflow:hidden}
+.vposter img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.vposter:hover img{transform:scale(1.05)}
+.play{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;background:var(--grad);box-shadow:0 10px 34px rgba(124,92,255,.55);transition:transform .2s}.vposter:hover .play{transform:scale(1.1)}
+.play:after{content:"";position:absolute;left:27px;top:21px;border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.vlinks{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.45rem;font-weight:500;font-size:.82rem}.vlinks a{color:var(--a2);text-decoration:none}.vlinks a:hover{text-decoration:underline}
+.vplayer{display:block;width:100%;aspect-ratio:9/16;background:#000;object-fit:contain}
+.clist{list-style:none;padding:0;display:grid;gap:.8rem;margin:1.2rem 0 1.5rem}
+.clist li{display:flex;gap:.9rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:.75rem 1rem}
+.clist li>span{flex:none;width:42px;height:42px;border-radius:12px;background:var(--card2);display:grid;place-items:center;font-size:1.15rem}
+.clist small{display:block;color:var(--mute);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em}
+.clist a,.clist b{font-weight:600;text-decoration:none;word-break:break-word}.clist a:hover{color:var(--a2)}
 .tl{position:relative;padding-left:1.8rem;display:grid;gap:1.6rem}.tl:before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--grad);opacity:.6}
 .tl>div{position:relative}.tl>div:before{content:"";position:absolute;left:-1.8rem;top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--a2)}
 .tl h3{font-size:1.3rem}.tl em{color:var(--a2);font-style:normal;font-weight:600;font-size:.95rem}
@@ -152,7 +163,7 @@ html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transfor
 <section id="videos"><div class="wrap">
  <div class="rv"><p class="eyebrow">04 · Videos</p><h2>Short-form <span class="gt">video</span> work</h2></div>
  <div class="grid g3" id="videoGrid"></div>
- <p id="vnote" hidden style="margin-top:1rem;color:var(--mute)">A video could not load. Make sure the <b>videos</b> folder is in the same folder as index.html (extract the zip first).</p>
+ <p id="vnote" hidden style="margin-top:1rem;color:var(--mute)">This video could not play here. Click <b>▶ Open in media player</b> under the video, and make sure the <b>videos</b> folder is in the same folder as index.html (extract the zip first).</p>
 </div></section>
 
 <section id="experience"><div class="wrap grid g2" style="gap:3.5rem">
@@ -180,9 +191,14 @@ html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transfor
 <section id="contact"><div class="wrap"><div class="cpanel grid g2 rv" style="gap:3rem">
  <div>
   <p class="eyebrow">06 · Contact</p><h2>Let's talk about your <span class="gt">campaign</span></h2>
-  <p style="color:var(--mute);margin-bottom:1.4rem">Send a message, or reach me directly.</p>
-  <div class="cta"><a class="btn" href="mailto:mohammedshabeeb1931@gmail.com">Email me</a><a class="btn ghost" href="https://wa.me/94723889032" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
-  <p>+94 72 388 9032<br>Sri Lanka</p>
+  <ul class="clist">
+   <li><span>👤</span><div><small>Name</small><b>Mohammed Shabeeb</b></div></li>
+   <li><span>📞</span><div><small>Mobile</small><a href="tel:+94723889032">+94 72 388 9032</a></div></li>
+   <li><span>✉️</span><div><small>Email</small><a href="mailto:mohammedshabeeb1931@gmail.com">mohammedshabeeb1931@gmail.com</a></div></li>
+   <li><span>📍</span><div><small>Address</small><b>Warakapola, Kegalle, Sri Lanka</b></div></li>
+   <li><span>💼</span><div><small>LinkedIn</small><a href="https://www.linkedin.com/in/mohammed-shabeeb-493ab53a4/" target="_blank" rel="noopener noreferrer">linkedin.com/in/mohammed-shabeeb-493ab53a4</a></div></li>
+  </ul>
+  <div class="cta"><a class="btn" href="tel:+94723889032">Call me</a><a class="btn ghost" href="https://wa.me/94723889032" target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="btn ghost" href="https://www.linkedin.com/in/mohammed-shabeeb-493ab53a4/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
  </div>
  <!-- EDIT: replace YOUR_ID with your Formspree form ID -->
  <form id="form" action="https://formspree.io/f/YOUR_ID" method="POST" novalidate>
@@ -193,13 +209,13 @@ html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transfor
  </form>
 </div></div></section>
 </main>
-<footer><div class="wrap"><span>© <span id="yr"></span> Mohammed Shabeeb · Digital Marketing Executive</span><a href="#top">Back to top ↑</a></div></footer>
+<footer><div class="wrap"><span>© <span id="yr"></span> Mohammed Shabeeb · Digital Marketing Executive</span><span><a href="https://www.linkedin.com/in/mohammed-shabeeb-493ab53a4/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="#top">Back to top ↑</a></span></div></footer>
 <a class="btn wa" href="https://wa.me/94723889032" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
 <dialog id="dlg"><div id="dlgBody"></div><button class="btn sm ghost" id="close" style="margin-top:1rem">Close</button></dialog>
 
 <script>
 /* EDIT: social links. Leave url empty to hide an icon. */
-const SOCIAL=[{n:"LinkedIn",u:""},{n:"Instagram",u:""},{n:"Facebook",u:""},{n:"TikTok",u:""},{n:"YouTube",u:""},{n:"Behance",u:""}];
+const SOCIAL=[{n:"LinkedIn",u:"https://www.linkedin.com/in/mohammed-shabeeb-493ab53a4/"},{n:"Instagram",u:""},{n:"Facebook",u:""},{n:"TikTok",u:""},{n:"YouTube",u:""},{n:"Behance",u:""}];
 /* EDIT: projects. Replace "Client name (replace)", and fill challenge / strategy / results
    (they only show when not empty). thumb and shots are embedded images. */
 const PROJECTS=[
@@ -239,8 +255,18 @@ $("#projects").onclick=e=>{const b=e.target.closest(".proj");if(!b)return;const 
  const st=(p.stats||[]).map(s=>`<div><b>${esc(s.v)}</b><span>${esc(s.l)}</span></div>`).join("");
  const im=(p.shots||[]).map(s=>`<img src="${s}" alt="Meta Insights screenshot for ${esc(p.t)}" loading="lazy">`).join("");
  body.innerHTML=`${p.video?`<video controls preload="none" src="${esc(p.video)}"></video>`:""}<h3>${esc(p.t)}</h3><p style="color:var(--mute)">${esc(p.client)} · ${esc(p.c)}</p>${p.summary?`<p>${esc(p.summary)}</p>`:""}${st?`<div class="stats">${st}</div>`:""}${rows}${im?`<div class="shots">${im}</div>`:""}`;dlg.showModal()};
-$("#videoGrid").innerHTML=VIDEOS.map(v=>`<figure class="vcard"><video controls playsinline preload="metadata" poster="${v.poster}" src="${esc(v.src)}"></video><figcaption>${esc(v.t)}</figcaption></figure>`).join("");
-$("#videoGrid").addEventListener("error",e=>{if(e.target.tagName==="VIDEO")$("#vnote").hidden=false},true);
+const vg=$("#videoGrid");
+vg.innerHTML=VIDEOS.map((v,i)=>`<figure class="vcard" data-i="${i}"><button class="vposter" type="button" aria-label="Play ${esc(v.t)}"><img src="${v.poster}" alt=""><span class="play"></span></button><figcaption>${esc(v.t)}<span class="vlinks"><a href="${esc(v.src)}" target="_blank" rel="noopener">▶ Open in media player</a><a href="${esc(v.src)}" download>⬇ Download</a></span></figcaption></figure>`).join("");
+vg.addEventListener("click",e=>{
+ const btn=e.target.closest(".vposter");if(!btn)return;
+ const v=VIDEOS[btn.closest(".vcard").dataset.i];
+ vg.querySelectorAll("video").forEach(x=>x.pause());
+ const vid=document.createElement("video");
+ vid.className="vplayer";vid.controls=true;vid.autoplay=true;vid.playsInline=true;vid.preload="auto";vid.src=v.src;
+ vid.addEventListener("error",()=>{$("#vnote").hidden=false});
+ btn.replaceWith(vid);
+ const p=vid.play();if(p&&p.catch)p.catch(()=>{});
+});
 drawFilters();drawProjects();
 
 $("#form").addEventListener("submit",e=>{
@@ -248,7 +274,10 @@ $("#form").addEventListener("submit",e=>{
  [["n","Enter your name."],["e","Enter a valid email address."],["m","Write a short message."]].forEach(([id,msg])=>{
   const f=$("#"+id),bad=!f.value.trim()||(id==="e"&&!/^\S+@\S+\.\S+$/.test(f.value));
   f.nextElementSibling.textContent=bad?msg:"";if(bad)ok=false});
- if(!ok)e.preventDefault();
+ if(!ok){e.preventDefault();return}
+ if(/YOUR_ID/.test(e.target.action)){e.preventDefault();
+  const body=encodeURIComponent("Name: "+$("#n").value+"\nEmail: "+$("#e").value+"\n\n"+$("#m").value);
+  location.href="mailto:mohammedshabeeb1931@gmail.com?subject="+encodeURIComponent("Portfolio enquiry from "+$("#n").value)+"&body="+body}
 });
 </script>
 <script>
